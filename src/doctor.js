@@ -18,7 +18,7 @@ export class Search {
 
 
 export class Doctor {
-  constructor(firstName, lastName, address, phone, newPatients) {
+  constructor(firstName, lastName, address, phone, language) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;

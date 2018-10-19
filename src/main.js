@@ -3,7 +3,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { Search, Doctor } from './doctor.js';
-
+/* eslint-disable no-unused-vars */
 $(document).ready(function() {
   $('#doctorForm').sumbit(function() {
     let name = $('#doctorName').val();
@@ -17,11 +17,19 @@ $(document).ready(function() {
 
     promise.then(function(response) {
     let body = JSON.parse(response);
-      $('.showHumidity').text(`The humidity in ${city} is ${body.main.humidity}%`);
-      $('.showTemp').text(`The temperature in Kelvins is ${body.main.temp} degrees.`);
-    }, function(error) {
-      $('.showErrors').text(`There was an error processing your request: ${error.message}`);
-    });
-  });
+    for (let i = 0; i < body.data.length; i++) {
+           let firstName = body.data[i].profile.first_name;
+           let lastName = body.data[i].profile.last_name;
+           let address =
+             `${body.data[i].practices[0].visit_address.street}
+             ${body.data[i].practices[0].visit_address.street2}
+             ${body.data[i].practices[0].visit_address.city}, ${body.data[i].practices[0].visit_address.state} ${body.data[i].practices[0].visit_address.zip}`;
+           let phone = body.data[i].practices[0].phones[0].number;
+           let language = body.data[i].practices[0].languages;
+           let doctor = new Doctor(firstName, lastName, address, phone, language);
 
+           $("#results").append(doctor);
+   }
+  });
+ });
 });
