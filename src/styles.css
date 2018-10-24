@@ -1,3 +1,9 @@
 h1 {
     text-align: center;
 }
+
+.jumbotron {
+    background-image: url(https://www.lvhn.org/sites/default/files/styles/location_featured/public/LVH-Pocono.jpg?itok=J9Sup9vc);
+    background-size: cover;
+    background-repeat: no-repeat; 
+}
